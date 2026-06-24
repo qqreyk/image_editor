@@ -45,7 +45,6 @@ int main(int argc, char* argv[]) {
 
     try {
         Image img(inputPath);
-        img.
         std::cout << "Изображение загружено: " << img.width() << "x" << img.height() << ", "
                   << img.channels() << " канал(а)\n";
 

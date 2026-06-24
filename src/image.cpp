@@ -51,18 +51,20 @@ int Image::channels() const {
     return m_channels;
 }
 
-void Image::checkBounds(int x, int y, int channel) const {
-    if (x < 0 || x >= m_width || y < 0 || y >= m_height || channel < 0 || channel >= m_channels) {
-        throw std::out_of_range("Координаты пикселя вне границ изображения");
-    }
+bool Image::checkBounds(int x, int y, int channel) const {
+    return x >= 0 && x < m_width && y >= 0 && y < m_height && channel >= 0 && channel < m_channels;
 }
 
 unsigned char& Image::at(int x, int y, int channel) {
-    checkBounds(x, y, channel);
+    if (!checkBounds(x, y, channel)) {
+        throw std::out_of_range("Координаты пикселя вне границ изображения");
+    }
     return m_data[static_cast<size_t>((y * m_width + x) * m_channels + channel)];
 }
 
 unsigned char Image::at(int x, int y, int channel) const {
-    checkBounds(x, y, channel);
+    if (!checkBounds(x, y, channel)) {
+        throw std::out_of_range("Координаты пикселя вне границ изображения");
+    }
     return m_data[static_cast<size_t>((y * m_width + x) * m_channels + channel)];
 }

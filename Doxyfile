@@ -1,0 +1,11 @@
+PROJECT_NAME           = "Image Editor"
+PROJECT_BRIEF          = "Консольный редактор изображений"
+INPUT                  = src
+OUTPUT_DIRECTORY       = docs
+OUTPUT_LANGUAGE        = Russian
+RECURSIVE              = YES
+GENERATE_HTML          = YES
+GENERATE_LATEX         = NO
+EXTRACT_ALL            = YES
+EXTRACT_PRIVATE        = YES
+QUIET                  = YES

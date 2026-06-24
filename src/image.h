@@ -71,6 +71,12 @@ class Image {
     int m_channels;
     std::vector<unsigned char> m_data;
 
-    /** @brief Проверяет координаты и выбрасывает исключение при выходе за границы. */
-    void checkBounds(int x, int y, int channel) const;
+    /**
+     * @brief Проверяет, находятся ли координаты в границах изображения.
+     * @param x       Столбец.
+     * @param y       Строка.
+     * @param channel Номер канала.
+     * @return true, если координаты корректны, иначе false.
+     */
+    bool checkBounds(int x, int y, int channel) const;
 };

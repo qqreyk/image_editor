@@ -32,24 +32,18 @@ Image::Image(int width, int height, int channels) {
 }
 
 void Image::save(const std::string& path) const {
-    int result = stbi_write_png(path.c_str(), m_width, m_height, m_channels,
-                                m_data.data(), m_width * m_channels);
+    int result = stbi_write_png(path.c_str(), m_width, m_height, m_channels, m_data.data(),
+                                m_width * m_channels);
     if (result == 0) {
         throw std::runtime_error("Не удалось сохранить файл: " + path);
     }
 }
 
-int Image::width() const {
-    return m_width;
-}
+int Image::width() const { return m_width; }
 
-int Image::height() const {
-    return m_height;
-}
+int Image::height() const { return m_height; }
 
-int Image::channels() const {
-    return m_channels;
-}
+int Image::channels() const { return m_channels; }
 
 bool Image::checkBounds(int x, int y, int channel) const {
     return x >= 0 && x < m_width && y >= 0 && y < m_height && channel >= 0 && channel < m_channels;

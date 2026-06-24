@@ -2,7 +2,6 @@
 
 #include <algorithm>
 #include <stdexcept>
-#include <vector>
 
 namespace filters {
 
@@ -80,7 +79,7 @@ void blur(Image& img) {
     }
 }
 
-Image resizeImage(const Image& img, int factor) {
+Image resizeImage(Image img, int factor) {
     if (factor == 0) {
         throw std::invalid_argument("Кратность не может быть равна нулю");
     }
@@ -155,7 +154,7 @@ void sharpen(Image& img) {
     }
 }
 
-Image rotate90(const Image& img) {
+Image rotate90(Image img) {
     // поворот на 90° по часовой: dst(x, y) = src(y, width-1-x)
     Image result(img.height(), img.width(), img.channels());
     for (int y = 0; y < img.height(); ++y) {

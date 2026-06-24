@@ -19,7 +19,7 @@ class Image {
      * @param path Путь к PNG-файлу.
      * @throws std::runtime_error Если файл не найден или повреждён.
      */
-    explicit Image(const std::string& path);
+    Image(const std::string& path);
 
     /**
      * @brief Создаёт пустое изображение с заданными параметрами.
@@ -35,16 +35,16 @@ class Image {
      * @param path Путь к выходному файлу.
      * @throws std::runtime_error Если файл не удалось записать.
      */
-    void save(const std::string& path) const;
+    void save(const std::string& path);
 
     /** @return Ширина изображения в пикселях. */
-    int width() const;
+    int width();
 
     /** @return Высота изображения в пикселях. */
-    int height() const;
+    int height();
 
     /** @return Количество каналов (1, 3 или 4). */
-    int channels() const;
+    int channels();
 
     /**
      * @brief Возвращает ссылку на значение одного канала пикселя.
@@ -54,16 +54,6 @@ class Image {
      * @throws std::out_of_range Если координаты вне границ.
      */
     unsigned char& at(int x, int y, int channel);
-
-    /**
-     * @brief Константная версия at().
-     * @param x       Столбец.
-     * @param y       Строка.
-     * @param channel Номер канала.
-     * @return Значение канала.
-     * @throws std::out_of_range Если координаты вне границ.
-     */
-    unsigned char at(int x, int y, int channel) const;
 
    private:
     int m_width;
@@ -78,5 +68,5 @@ class Image {
      * @param channel Номер канала.
      * @return true, если координаты корректны, иначе false.
      */
-    bool checkBounds(int x, int y, int channel) const;
+    bool checkBounds(int x, int y, int channel);
 };

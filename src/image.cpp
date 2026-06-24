@@ -10,8 +10,8 @@ Image::Image(const std::string& path) {
     int w = 0, h = 0, c = 0;
     unsigned char* raw = stbi_load(path.c_str(), &w, &h, &c, 0);
     if (!raw) {
-        std::string reason = stbi_failure_reason() ? stbi_failure_reason() : "неизвестно";
-        throw std::runtime_error("Не удалось открыть файл: " + path + "\nПричина: " + reason);
+        throw std::runtime_error("Не удалось открыть файл: " + path + "\nПричина: " +
+                                 (stbi_failure_reason() ? stbi_failure_reason() : "неизвестно"));
     }
     m_width = w;
     m_height = h;
@@ -31,7 +31,7 @@ Image::Image(int width, int height, int channels) {
     m_data.assign(static_cast<size_t>(width * height * channels), 0);
 }
 
-void Image::save(const std::string& path) const {
+void Image::save(const std::string& path) {
     int result = stbi_write_png(path.c_str(), m_width, m_height, m_channels, m_data.data(),
                                 m_width * m_channels);
     if (result == 0) {
@@ -39,24 +39,17 @@ void Image::save(const std::string& path) const {
     }
 }
 
-int Image::width() const { return m_width; }
+int Image::width() { return m_width; }
 
-int Image::height() const { return m_height; }
+int Image::height() { return m_height; }
 
-int Image::channels() const { return m_channels; }
+int Image::channels() { return m_channels; }
 
-bool Image::checkBounds(int x, int y, int channel) const {
+bool Image::checkBounds(int x, int y, int channel) {
     return x >= 0 && x < m_width && y >= 0 && y < m_height && channel >= 0 && channel < m_channels;
 }
 
 unsigned char& Image::at(int x, int y, int channel) {
-    if (!checkBounds(x, y, channel)) {
-        throw std::out_of_range("Координаты пикселя вне границ изображения");
-    }
-    return m_data[static_cast<size_t>((y * m_width + x) * m_channels + channel)];
-}
-
-unsigned char Image::at(int x, int y, int channel) const {
     if (!checkBounds(x, y, channel)) {
         throw std::out_of_range("Координаты пикселя вне границ изображения");
     }

@@ -67,7 +67,7 @@ void blur(Image& img);
  * @throws std::invalid_argument Если factor равен 0.
  * @throws std::invalid_argument Если изображение нельзя равномерно уменьшить на данный factor.
  */
-Image resizeImage(const Image& img, int factor);
+Image resizeImage(Image img, int factor);
 
 /**
  * @brief Инвертирует цвета изображения.
@@ -103,6 +103,6 @@ void sharpen(Image& img);
  * @param img Исходное изображение.
  * @return Новое повёрнутое изображение.
  */
-Image rotate90(const Image& img);
+Image rotate90(Image img);
 
 }  // namespace filters

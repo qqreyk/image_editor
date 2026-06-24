@@ -1,16 +1,9 @@
-#include <algorithm>
 #include <iostream>
 #include <limits>
 #include <string>
 
 #include "filters.h"
 #include "image.h"
-
-static void trim(std::string& s) {
-    auto isSpace = [](unsigned char c) { return std::isspace(c); };
-    s.erase(s.begin(), std::find_if_not(s.begin(), s.end(), isSpace));
-    s.erase(std::find_if_not(s.rbegin(), s.rend(), isSpace).base(), s.end());
-}
 
 static void printMenu() {
     std::cout << "\n=== Операции ===\n"
@@ -37,10 +30,8 @@ int main(int argc, char* argv[]) {
         std::cout << "=== Консольный редактор изображений ===\n";
         std::cout << "Путь к входному файлу (PNG): ";
         std::getline(std::cin, inputPath);
-        trim(inputPath);
         std::cout << "Путь к выходному файлу (PNG): ";
         std::getline(std::cin, outputPath);
-        trim(outputPath);
     }
 
     try {
